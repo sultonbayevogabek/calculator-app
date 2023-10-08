@@ -291,16 +291,19 @@ document.addEventListener('keydown', event => {
 
     if (key === '.') {
         getElement(`[data-key="."]`).click();
+        getElement(`[data-key="."]`).focus();
         return;
     }
 
     if (['+', '-', '/', '*'].includes(key)) {
         getElement(`[data-operator="${key}"]`).click();
+        getElement(`[data-operator="${key}"]`).focus();
         return;
     }
 
     if (key === 'Enter') {
         event.preventDefault();
         calculatorEqualButton.click();
+        calculatorEqualButton.focus();
     }
 })
