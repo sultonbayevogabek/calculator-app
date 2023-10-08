@@ -285,6 +285,7 @@ document.addEventListener('keydown', event => {
     const keyNumber = +key;
     if (keyNumber >= 0 && keyNumber <= 9) {
         getElement(`[data-key="${keyNumber}"]`).click();
+        getElement(`[data-key="${keyNumber}"]`).focus();
         return;
     }
 
