@@ -1,100 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
 
-  <!-- Theme toggling adaptation to user settings -->
-  <script>
-    let localSTheme = localStorage.getItem('theme');
-    let themeToSet = localSTheme;
+    <!-- Theme toggling adaptation to user settings -->
+    <script>
+        let localSTheme = localStorage.getItem('theme');
+        let themeToSet = localSTheme;
 
-    if (!localSTheme) {
-      themeToSet = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+        if (!localSTheme) {
+            themeToSet = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
 
-    document.documentElement.setAttribute('data-theme', themeToSet);
-  </script>
+        document.documentElement.setAttribute('data-theme', themeToSet);
+    </script>
+
+    <!-- Main JavaScript functions -->
+    <script defer src="js/main.js"></script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
 
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
-
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <div class="calculator">
+<div class="calculator">
     <!-- HEADER -->
     <header class="calculator__header">
-      <a class="calculator__logo logo" href="index.html">calc</a>
+        <a class="calculator__logo logo" href="index.html">calc</a>
 
-      <!-- THEME-SWITCHER -->
-      <div class="theme-switcher">
-        <span class="theme-switcher__text">Theme</span>
+        <!-- THEME-SWITCHER -->
+        <div class="theme-switcher">
+            <span class="theme-switcher__text">Theme</span>
 
-        <div class="theme-switcher__control-wrapper">
-          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio" checked>
-          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light" id="light-theme-radio">
-          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage" id="vintage-theme-radio">
+            <div class="theme-switcher__control-wrapper">
+                <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark"
+                       id="dark-theme-radio">
+                <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light"
+                       id="light-theme-radio">
+                <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage"
+                       id="vintage-theme-radio">
 
-          <div class="theme-switcher__indicators">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-          </div>
+                <div class="theme-switcher__indicators">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
 
-          <div class="theme-switcher__control">
-            <label class="theme-switcher__label" for="dark-theme-radio">
-              <span class="visually-hidden">Dark theme</span>
-            </label>
-            <label class="theme-switcher__label" for="light-theme-radio">
-              <span class="visually-hidden">Light theme</span>
-            </label>
-            <label class="theme-switcher__label" for="vintage-theme-radio">
-              <span class="visually-hidden">Vintage theme</span>
-            </label>
+                <div class="theme-switcher__control">
+                    <label class="theme-switcher__label" for="dark-theme-radio">
+                        <span class="visually-hidden">Dark theme</span>
+                    </label>
+                    <label class="theme-switcher__label" for="light-theme-radio">
+                        <span class="visually-hidden">Light theme</span>
+                    </label>
+                    <label class="theme-switcher__label" for="vintage-theme-radio">
+                        <span class="visually-hidden">Vintage theme</span>
+                    </label>
 
-            <span class="theme-switcher__circle"></span>
-          </div>
+                    <span class="theme-switcher__circle"></span>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
 
     <!-- MAIN -->
     <main class="calculator__main">
-      <input class="calculator__input" type="text" inputmode="number" placeholder="0" autofocus>
+        <input class="calculator__input" type="text" inputmode="number" placeholder="0" readonly>
 
-      <div class="calculator__keyboard">
-        <button class="key key--number key--7" data-key="7" type="button">7</button>
-        <button class="key key--number key--8" data-key="8" type="button">8</button>
-        <button class="key key--number key--9" data-key="9" type="button">9</button>
-        <button class="key key--command key--del" type="button">Del</button>
-        <button class="key key--number key--4" data-key="4" type="button">4</button>
-        <button class="key key--number key--5" data-key="5" type="button">5</button>
-        <button class="key key--number key--6" data-key="6" type="button">6</button>
-        <button class="key key--add" type="button">+</button>
-        <button class="key key--number key--1" data-key="1" type="button">1</button>
-        <button class="key key--number key--2" data-key="2" type="button">2</button>
-        <button class="key key--number key--3" data-key="3" type="button">3</button>
-        <button class="key key--subtract" type="button">-</button>
-        <button class="key key--number key--decimal" data-key="." type="button">.</button>
-        <button class="key key--number key--0" data-key="0" type="button">0</button>
-        <button class="key key--divide" type="button">/</button>
-        <button class="key key--multiply" type="button">x</button>
-        <button class="key key--command key--reset" type="button">Reset</button>
-        <button class="key key--command key--equal" type="button">=</button>
-      </div>
+        <button class="calculator__copy">
+            <i class="fa fa-copy" aria-hidden="true"></i>
+        </button>
+
+
+        <div class="calculator__keyboard">
+            <button class="key key--command key--history" type="button">History</button>
+            <button class="key key--command key--sound" data-sound="on" type="button">
+                <i class="fa fa-volume-up" aria-hidden="true"></i>
+                <i class="fa fa-volume-off" aria-hidden="true"></i>
+            </button>
+
+            <button class="key key--number key--7" data-key="7" type="button">7</button>
+            <button class="key key--number key--8" data-key="8" type="button">8</button>
+            <button class="key key--number key--9" data-key="9" type="button">9</button>
+            <button class="key key--command key--del" type="button">Del</button>
+            <button class="key key--number key--4" data-key="4" type="button">4</button>
+            <button class="key key--number key--5" data-key="5" type="button">5</button>
+            <button class="key key--number key--6" data-key="6" type="button">6</button>
+            <button class="key key--operator key--add" data-operator="+" type="button">+</button>
+            <button class="key key--number key--1" data-key="1" type="button">1</button>
+            <button class="key key--number key--2" data-key="2" type="button">2</button>
+            <button class="key key--number key--3" data-key="3" type="button">3</button>
+            <button class="key key--operator key--subtract" data-operator="-" type="button">-</button>
+            <button class="key key--number key--decimal" data-key="." type="button">.</button>
+            <button class="key key--number key--0" data-key="0" type="button">0</button>
+            <button class="key key--operator key--divide" data-operator="/" type="button">/</button>
+            <button class="key key--operator key--multiply" data-operator="*" type="button">x</button>
+            <button class="key key--command key--reset" type="button">Reset</button>
+            <button class="key key--command key--equal" type="button">=</button>
+        </div>
+
+        <div class="history">
+            <div class="history__items">
+
+            </div>
+            <div class="history__clear">
+                <button class="key key--command key--equal" type="button">Clear history</button>
+            </div>
+        </div>
     </main>
-  </div>
-
-  <script src="js/main.js"></script>
+</div>
 </body>
 </html>

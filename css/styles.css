@@ -340,6 +340,13 @@ select:-webkit-autofill:focus {
   box-shadow: 0px -3px 0px 0px var(--color-shadow-key-equal) inset;
 }
 
+.key--history {
+  grid-area: history;
+}
+
+.key--sound {
+  grid-area: sound;
+}
 
 .key--7 {
   grid-area: seven;
@@ -436,8 +443,28 @@ select:-webkit-autofill:focus {
 
 
 .calculator__main {
+  position: relative;
   display: grid;
   gap: 24px;
+}
+
+.calculator__copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  color: var(--color-text-input);
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.1s opacity ease;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.calculator__copy:hover {
+  opacity: 1;
 }
 
 .calculator__input {
@@ -459,8 +486,9 @@ select:-webkit-autofill:focus {
 .calculator__keyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 64px);
+  grid-template-rows: repeat(6, 64px);
   grid-template-areas:
+    "history history sound sound"
     "seven eight nine del"
     "four five six add"
     "one two three subtract"
@@ -517,4 +545,53 @@ only screen and (                min-resolution: 2dppx) {
     font-size: 1.75rem;
     letter-spacing: -0.02919rem;
   }
+}
+
+.history {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-input);
+  width: 400px;
+  height: 100%;
+  border-radius: 10px;
+  left: -420px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.history.history--open {
+  display: flex;
+}
+
+.history__items {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.history__items::-webkit-scrollbar {
+  display: none;
+}
+.history__items {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.history__item {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-text-input);
+}
+
+.history__clear {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.key--sound[data-sound="on"] .fa-volume-off {
+  display: none;
+}
+
+.key--sound[data-sound="off"] .fa-volume-up {
+  display: none;
 }
