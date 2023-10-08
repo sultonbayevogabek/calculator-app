@@ -257,6 +257,7 @@ soundButton.addEventListener('click', () => {
     } else {
         sound = 'on';
         setLocalStorage('sound', sound);
+        playClickSound();
     }
     setAttribute(soundButton, 'data-sound', sound);
 })
