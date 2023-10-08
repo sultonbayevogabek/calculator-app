@@ -14,15 +14,15 @@ function setLocalStorage(name, value) {
 }
 
 function setAttribute(element, attributeName, value) {
-    element?.setAttribute(attributeName, value)
+    element?.setAttribute(attributeName, value);
 }
 
 function removeAttribute(element, attributeName) {
-    element?.removeAttribute(attributeName)
+    element?.removeAttribute(attributeName);
 }
 
 // Themes
-const elCurrentTheme = document.documentElement.dataset.theme;
+const elCurrentTheme = document.documentElement?.dataset?.theme;
 const themeRadioInput = getElement(`.theme-switcher__radio[value='${elCurrentTheme}']`);
 setAttribute(themeRadioInput, 'checked', true);
 
@@ -30,13 +30,13 @@ const elThemeSwitcherControlWrapper = getElement('.theme-switcher__control-wrapp
 const themes = ['dark', 'light', 'vintage'];
 
 function playSwitchSound() {
-    new Audio('../media/theme.mp3').play();
+    new Audio('../media/theme.mp3')?.play();
 }
 
 function playClickSound() {
     const sound = localStorage.getItem('sound') || 'on';
     if (sound === 'on') {
-        new Audio('../media/click.mp3').play();
+        new Audio('../media/click.mp3')?.play();
     }
 }
 
@@ -52,15 +52,15 @@ elThemeSwitcherControlWrapper?.addEventListener('change', switchTheme);
 let themeChangeKeys = '';
 
 function setThemeInputValue(key) {
-    if (themeChangeKeys.length === 0 && key === 'Alt') {
+    if (themeChangeKeys?.length === 0 && key === 'Alt') {
         themeChangeKeys = key;
         return;
     }
 
-    if (themeChangeKeys.length === 3 && [1, 2, 3].includes(+key)) {
+    if (themeChangeKeys?.length === 3 && [1, 2, 3].includes(+key)) {
         themeChangeKeys += key;
         const themeRadioInputs = getAllElements(`.theme-switcher__radio`);
-        themeRadioInputs.forEach(themeRadioInput => {
+        themeRadioInputs?.forEach(themeRadioInput => {
             removeAttribute(themeRadioInput, 'checked')
         });
         const checkingThemeRadioInput = getElement(`.theme-switcher__radio[value='${themes[+key - 1]}']`)
@@ -75,7 +75,7 @@ let secondNumber = null;
 let result = null;
 let operator = null;
 let history = [];
-const calculatorKeyboard = getElement('.calculator__keyboard')
+const calculatorKeyboard = getElement('.calculator__keyboard');
 const calculatorDisplayInput = getElement('.calculator__input');
 const calculatorKeyNumberButtons = getAllElements('.key--number', calculatorKeyboard);
 const calculatorEqualButton = getElement('.key--equal', calculatorKeyboard);
@@ -98,7 +98,7 @@ function resetCalculator() {
 }
 
 function formatNumber(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function calculate() {
@@ -131,12 +131,11 @@ function calculate() {
         secondNumber,
         result
     })
+    setLocalStorage('history', JSON.stringify(history));
 
     if (historyLayer.classList.contains('history--open')) {
         drawHistory(history);
     }
-
-    setLocalStorage('history', JSON.stringify(history));
 
     firstNumber = null;
     secondNumber = null;
@@ -163,7 +162,7 @@ calculatorKeyNumberButtons.forEach(numberButton => {
 
         if (!displayInputValueLength) {
             if (number === '.') {
-                displayInputValue = '0.'
+                displayInputValue = '0.';
             } else {
                 displayInputValue = number;
             }
@@ -279,6 +278,7 @@ document.addEventListener('keydown', event => {
 
     if (key === 'Backspace') {
         calculatorDeleteButton.click();
+        return;
     }
 
     const keyNumber = +key;
